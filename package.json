@@ -1,0 +1,32 @@
+{
+  "name": "route-optimizer",
+  "version": "0.1.0",
+  "description": "A simple API that computes an optimized itinerary",
+  "main": "",
+  "scripts": {
+    "start": "tsc && node dist/app.js",
+    "test": "jest",
+    "test-watch": "jest --watch"
+  },
+  "keywords": [
+    "api",
+    "itinerary"
+  ],
+  "author": "Damien Cattorini",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@hapi/hapi": "^18.3.2",
+    "hapi-rate-limit": "^4.0.1"
+  },
+  "devDependencies": {
+    "@types/hapi__hapi": "^18.2.5",
+    "@types/jest": "^24.0.18",
+    "@types/node": "^12.7.4",
+    "expect": "^24.9.0",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.0.2",
+    "tslint": "^5.19.0",
+    "typescript": "^3.6.2"
+  }
+}
