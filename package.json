@@ -17,6 +17,7 @@
   "private": true,
   "dependencies": {
     "@hapi/hapi": "^18.3.2",
+    "geolib": "^3.0.4",
     "hapi-rate-limit": "^4.0.1"
   },
   "devDependencies": {
