@@ -38,9 +38,8 @@ const init = async () => {
             method: HTTP_METHODS.GET,
             path: `/${Config.ROUTE_OPTIMIZER}`,
             handler: function (request, h) {
-                return h.response(
-                    Boom.methodNotAllowed("This endpoint only works with a POST request.").output.payload
-                );
+                const error = Boom.methodNotAllowed("This endpoint only works with a POST request.").output.payload;
+                return h.response(error).code(error.statusCode);
             }
         },
 
@@ -54,7 +53,8 @@ const init = async () => {
             path: `/${Config.ROUTE_OPTIMIZER}`,
             handler: function (request, h) {
                 if (request.payload === undefined) {
-                    return h.response(Boom.badRequest("Invalid request payload input").output.payload);
+                    const error = Boom.badRequest("Invalid request payload input").output.payload;
+                    return h.response(error).code(error.statusCode);
                 }
 
                 let payload: RouteOptimizer.IRoutingRequest;
@@ -62,17 +62,22 @@ const init = async () => {
                     payload = JSON.parse(request.payload.toString() as string) as RouteOptimizer.IRoutingRequest;
                     const validationResult = RouteOptimizer.inputSchema.validate(payload);
                     if (validationResult.error !== null) {
-                        return h.response(Boom.badRequest("Invalid request payload input").output.payload);
+                        const error = Boom.badRequest("Invalid request payload input").output.payload;
+                        return h.response(error).code(error.statusCode);
                     }
                 } catch (e) {
-                    return h.response(Boom.badRequest("Invalid request payload input").output.payload);
+                    const error = Boom.badRequest("Invalid request payload input").output.payload;
+                    return h.response(error).code(error.statusCode);
                 }
 
-                const optimizedRoute: RouteOptimizer.IOptimizedRoute | null = RouteOptimizer.optimize(payload);
-                if (optimizedRoute === null) {
-                    return h.response(Boom.internal().output.payload);
+                let optimizedRoute: RouteOptimizer.IOptimizedRoute;
+                try {
+                    optimizedRoute = RouteOptimizer.optimize(payload);
+                    return h.response(optimizedRoute);
+                } catch (e) {
+                    const error = Boom.internal().output.payload;
+                    return h.response(error).code(error.statusCode);
                 }
-                return h.response(optimizedRoute);
             },
             options: {
                 payload: {

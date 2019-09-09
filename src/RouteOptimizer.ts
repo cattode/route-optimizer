@@ -101,7 +101,7 @@ export function getCombinations<T>(array: T[]): T[][] {
  * @param {IRoutingRequest} routingRequest - The object containing all the information needed for a routing request
  * @return {IOptimizedRoute} The optimized route.
  */
-export function optimize(routingRequest: IRoutingRequest): IOptimizedRoute | null {
+export function optimize(routingRequest: IRoutingRequest): IOptimizedRoute {
     const tasksCombinations = getCombinations(routingRequest.tasks);
 
     // Average speed between tasks

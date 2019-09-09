@@ -4,7 +4,7 @@ import Config from "../src/config";
 import { HTTP_METHODS } from "../src/util";
 
 // tslint:disable-next-line:no-console no-empty
-//console.log = function() {};
+console.log = function() {};
 
 // Start application before running the test case
 beforeAll((done) => {
@@ -39,7 +39,6 @@ test(`/${Config.ROUTE_OPTIMIZER} GET`, async function (done) {
         url: `/${Config.ROUTE_OPTIMIZER}`
     };
     const data = await server.inject(options);
-    console.log(options);
     expect(data.statusCode).toBe(405);
     done();
 });
@@ -50,7 +49,6 @@ test(`/${Config.ROUTE_OPTIMIZER} POST`, async function (done) {
         method: HTTP_METHODS.POST,
         url: `/${Config.ROUTE_OPTIMIZER}`
     };
-    console.log(options);
     const data = await server.inject(options);
     expect(data.statusCode).toBe(400);
     done();

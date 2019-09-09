@@ -24,3 +24,18 @@ test("getCombinations function", async function (done) {
     expect(combinationResult.length).toBe(factorial(randomArray.length));
     done();
 });
+
+test("optimize function", async function (done) {
+    expect.assertions(4);
+
+    const request: RouteOptimizer.IRoutingRequest = require("./sample.json");
+    const result: RouteOptimizer.IOptimizedRoute = RouteOptimizer.optimize(request);
+
+    expect(result).toBeTruthy();
+
+    expect(result.totalTime).toBe(263);
+
+    expect(result.schedule).toBeDefined();
+    expect(result.schedule.length).toBe(request.tasks.length + 1);
+    done();
+});
