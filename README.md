@@ -34,12 +34,6 @@ You can test the API with the JSON test sample.
 curl -X POST -H "Content-Type: application/json" -d @"./test/sample.json" http://localhost:3000/routeOptimizer
 ```
 
-## Running the tests
-
-```
-npm test
-```
-
 ### API documentation
 
 Compute an optimized route
@@ -51,15 +45,25 @@ Compute an optimized route
 **Payload:**
 
    `{string} departureTime` - The departure time as a UNIX timestamp string
+
    `{object} home` - The home position
+
    `{number} home.lat` - The latitude of the home
+
    `{number} home.lng` - The longitude of the home
+
    `{array} tasks` - The list of tasks
+
    `{number} tasks.id` - The identifier of the task
+
    `{number} tasks.lat` - The latitude of the task
+
    `{number} tasks.lng` - The longitude of the task
+
    `{number} tasks.duration` - The list of tasks
+
    `{number} tasks.speed` - [Optional] The average driving speed to drive to this task in km/h
+
    `{number} speed` - [Optional] The average driving speed for the whole trip in km/h
 
 
@@ -118,7 +122,17 @@ Compute an optimized route
 - **Code:** 500 Internal Server Error
 
 
+**Notes:** 
 
+The default driving speed used for computations is configured in `./src/config.ts`.
+The payload can specify a driving speed either for the whole trip, or for each individual task.
+
+
+## Running the tests
+
+```
+npm test
+```
 
 
 ## License
