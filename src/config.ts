@@ -7,5 +7,8 @@ export default {
     ROUTE_OPTIMIZER: "routeOptimizer",
 
     /* API rate limits */
-    RATE_LIMIT: 500
+    RATE_LIMIT: 500,
+
+    /* Route Optimier values */
+    AVERAGE_SPEED: 45 // in km/h
 };

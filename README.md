@@ -29,6 +29,10 @@ npm start
 
 By default, the API runs on `http://localhost:3000/`.
 
+You can test the API with the JSON test sample.
+```
+curl -X POST -H "Content-Type: application/json" -d @"./test/sample.json" http://localhost:3000/routeOptimizer
+```
 
 
 ## Running the tests
